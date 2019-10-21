@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="arteftest:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>arteftest</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="gwtp-appengine-guice-archetype-1.5.3.war">
+      <element id="artifact" artifact-name="arteftest:war exploded" />
+    </root>
+  </artifact>
+</component>
