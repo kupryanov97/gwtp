@@ -7,6 +7,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.AbstractCellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.SimplePager;
@@ -18,6 +19,7 @@ import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.RangeChangeEvent;
 import com.googlecode.objectify.ObjectifyService;
 import com.gwtplatform.mvp.client.ViewImpl;
+import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.Pagination;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
@@ -27,10 +29,25 @@ import org.gwtbootstrap3.client.ui.gwt.CellTable;
 import org.gwtbootstrap3.extras.datetimepicker.client.ui.DateTimePicker;
 import ru.test.arh.client.pojo.TableTestPojo;
 import com.google.gwt.cell.client.FieldUpdater;
+import ru.test.arh.shared.dto.TableTestPojo1;
 
+import java.util.ArrayList;
 import java.util.Date;
 
-public class HomeView extends ViewImpl implements HomePresenter.MyView {
+public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements HomePresenter.MyView {
+
+    @Override
+    public void addTaskInTable(TableTestPojo1 task) {
+
+    }
+
+    @Override
+    public void updateTable(ArrayList<TableTestPojo1> tasks) {
+
+    }
+
+    interface Binder extends UiBinder<Widget, HomeView> {
+    }
     @UiField(provided = true)
     CellTable<TableTestPojo> cellTable = new CellTable<TableTestPojo>(10);
     @UiField
@@ -42,9 +59,6 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
     @UiField
     DateTimePicker date;
 
-
-    interface Binder extends UiBinder<Widget, HomeView> {
-    }
     private SimplePager cellTablePager = new SimplePager();
     private ListDataProvider<TableTestPojo> cellTableProvider = new ListDataProvider<TableTestPojo>();
 
@@ -115,14 +129,13 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
             Date date1 = new Date();
             @Override
             public void onClick(ClickEvent clickEvent) {
-                dataProvider.getList().add(new TableTestPojo(date.getValue(), "Test ", true));
-
+                dataProvider.getList().add(new TableTestPojo(date.getValue(), "Test "));
                 Window.alert("Добавлено!");
             }
         });
-
-        pager.setDisplay(grid);
         pagination.clear();
-        dataProvider.addDataDisplay(grid);
+    }@UiHandler("button11")
+    public void saveTask(ClickEvent event){
+        getUiHandlers().saveTask(this.text.getText(), this.date.getValue());
     }
 }

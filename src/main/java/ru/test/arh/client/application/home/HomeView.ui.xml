@@ -9,7 +9,8 @@
     <ui:with field="res" type="ru.test.arh.client.resources.AppResources"/>
 
     <g:HTMLPanel>
-        <b:Image styleName="imagemain" url="https://ru.inshaker.com/uploads/billboard/promo/55/1570439037-1920%D1%85250.jpg"/>
+        <b:Image
+                styleName="imagemain" url="https://ru.inshaker.com/uploads/billboard/promo/55/1570439037-1920%D1%85250.jpg"/>
         <form class="buttons" action="/#images">
             <button type="submit">History</button>
         </form>

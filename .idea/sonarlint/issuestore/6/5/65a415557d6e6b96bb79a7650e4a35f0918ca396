@@ -1,0 +1,4 @@
+
+squid:UselessImportCheck"QRemove this unused import 'com.gwtplatform.mvp.client.annotations.ProxyStandard'.(›Å”¦ÿÿÿÿÿ8€ß¸œß-
+Ÿsquid:S1186/"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñ†¤Ù8¨Æœß-
+rsquid:UselessImportCheck"BRemove this unused import 'ru.test.arh.client.pojo.TableTestPojo'.(½÷àÁüÿÿÿÿ8‹¥ŞÇß-

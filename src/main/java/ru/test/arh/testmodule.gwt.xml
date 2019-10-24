@@ -3,9 +3,14 @@
         "http://gwtproject.org/doctype/2.7.0/gwt-module.dtd">
 <module rename-to='testmodule'>
     <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.inject.Inject"/>
+
+    <inherits name='com.gwtplatform.dispatch.Dispatch'/>
     <inherits name="com.gwtplatform.mvp.MvpWithEntryPoint"/>
+
     <inherits name="org.gwtbootstrap3.GwtBootstrap3"/>
     <inherits name="org.gwtbootstrap3.extras.datetimepicker.DateTimePicker"/>
+
     <extend-configuration-property name="gin.ginjector.modules"
                                    value="ru.test.arh.client.gin.ClientModule"/>
 

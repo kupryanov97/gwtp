@@ -19,7 +19,7 @@ public interface ClientGinjector extends Ginjector {
   
   Provider<ru.test.arh.client.application.ApplicationPresenter> getrutestarhclientapplicationApplicationPresenter();
   
-  Provider<ru.test.arh.client.application.home.HomePresenter> getrutestarhclientapplicationhomeHomePresenter();
+  AsyncProvider<ru.test.arh.client.application.home.HomePresenter> getrutestarhclientapplicationhomeHomePresenter();
   
   AsyncProvider<ru.test.arh.client.application.images.ImagesPresenter> getrutestarhclientapplicationimagesImagesPresenter();
 }

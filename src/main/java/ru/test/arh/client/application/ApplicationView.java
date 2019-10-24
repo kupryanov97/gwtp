@@ -15,6 +15,11 @@ import com.google.gwt.event.dom.client.*;
 import com.google.gwt.user.client.ui.*;
 
 public class ApplicationView extends ViewImpl implements ApplicationPresenter.MyView {
+    @Override
+    public void setUiHandlers(ApplicationUiHandlers applicationUiHandlers) {
+
+    }
+
     interface Binder extends UiBinder<Widget, ApplicationView> {
     }
     @UiField
@@ -24,7 +29,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     ApplicationView(Binder uiBinder) {
        // username.setFocus(true);
         initWidget(uiBinder.createAndBindUi(this));
-        bindSlot(ApplicationPresenter.SLOT_MAIN, mainContentPanel);
+        bindSlot(ApplicationPresenter.SLOT_APPLICATION, mainContentPanel);
     }
 
 }

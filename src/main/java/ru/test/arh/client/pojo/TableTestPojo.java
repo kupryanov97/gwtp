@@ -8,12 +8,10 @@ import java.util.Date;
 public class TableTestPojo {
     private Date field1;
     private String field2;
-    private Boolean field3;
 
-    public  TableTestPojo(Date field1, String field2, Boolean field3) {
+    public  TableTestPojo(Date field1, String field2) {
         this.field1 = field1;
         this.field2 = field2;
-        this.field3 = field3;
     }
 
     public  Date getField1() {
@@ -24,7 +22,4 @@ public class TableTestPojo {
         return field2;
     }
 
-    public  Boolean getField3() {
-        return field3;
-    }
 }
