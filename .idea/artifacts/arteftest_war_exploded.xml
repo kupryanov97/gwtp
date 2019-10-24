@@ -172,7 +172,6 @@
       </element>
       <element id="javaee-facet-resources" facet="arteftest/web/Web" />
       <element id="gwt-compiler-output" facet="arteftest/gwt/GWT" />
-      <element id="artifact" artifact-name="gwtp-appengine-guice-archetype:war" />
     </root>
   </artifact>
 </component>

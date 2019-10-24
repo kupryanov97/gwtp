@@ -17,9 +17,9 @@ public interface ClientGinjector extends Ginjector {
   
   DefaultBootstrapper getDefaultBootstrapper();
   
-  Provider<ru.test.arh.client.application.ApplicationPresenter> getrutestarhclientapplicationApplicationPresenter();
+  Provider<ru.kupryanov.client.application.ApplicationPresenter> getrukupryanovclientapplicationApplicationPresenter();
   
-  AsyncProvider<ru.test.arh.client.application.home.HomePresenter> getrutestarhclientapplicationhomeHomePresenter();
+  AsyncProvider<ru.kupryanov.client.application.home.HomePresenter> getrukupryanovclientapplicationhomeHomePresenter();
   
-  AsyncProvider<ru.test.arh.client.application.images.ImagesPresenter> getrutestarhclientapplicationimagesImagesPresenter();
+  AsyncProvider<ru.kupryanov.client.application.images.ImagesPresenter> getrukupryanovclientapplicationimagesImagesPresenter();
 }

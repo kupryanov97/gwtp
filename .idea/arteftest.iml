@@ -17,6 +17,9 @@
         <setting name="gwtSdkUrl" value="file://$MAVEN_REPOSITORY$/com/google/gwt/gwt-dev/2.8.1/" />
         <setting name="gwtSdkType" value="maven" />
         <setting name="webFacet" value="Web" />
+        <packaging>
+          <module name="ru.kupryanov.TaskManager" enabled="false" />
+        </packaging>
       </configuration>
     </facet>
     <facet type="app-engine-standard" name="Google App Engine Standard">
