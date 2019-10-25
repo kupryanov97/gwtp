@@ -37,6 +37,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         this.dispatcher = dispatcher;
         getView().setUiHandlers(this);
         updateTable();
+        System.out.println("");
     }
     @Override
     public void addTaskInTable(long id){
