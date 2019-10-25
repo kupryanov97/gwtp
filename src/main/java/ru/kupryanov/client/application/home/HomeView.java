@@ -84,6 +84,23 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
             }
         };
         cellTable.addColumn(col3, "Due");
+
+        final Column<Task, String> col4 = new Column<Task, String>(new ButtonCell(ButtonType.PRIMARY, IconType.GITHUB)) {
+            @Override
+            public String getValue(Task object) {
+                return "Удалить";
+            }
+        };
+        col4.setFieldUpdater(new FieldUpdater<Task, String>() {
+            @Override
+            public void update(int index, Task object, String value) {
+
+                Window.alert("Удалено!");
+            }
+        });
+        cellTable.addColumn(col4, "");
+
+
     }
 
     @UiHandler("button11")
