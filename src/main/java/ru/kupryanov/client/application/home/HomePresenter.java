@@ -5,6 +5,7 @@ import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import ru.kupryanov.client.application.ApplicationPresenter;
 import ru.kupryanov.client.dispatch.AsyncCallbackImpl;
+import ru.kupryanov.client.event.DelTaskEvent;
 import ru.kupryanov.client.place.NameTokens;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
@@ -18,11 +19,12 @@ import ru.kupryanov.shared.dto.Task;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy> implements HomeUiHandlers {
     interface MyView extends View, HasUiHandlers<HomeUiHandlers> {
         void addTaskInTable(Task task);
-        void updateTable(ArrayList<Task> tasks);
+        void updateTable(List<Task> tasks);
     }
 
     @ProxyCodeSplit
@@ -53,13 +55,8 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         dispatcher.execute(new GetTasksAction(), new AsyncCallbackImpl<GetTasksResult>() {
             @Override
             public void onSuccess(GetTasksResult result) {
-                ArrayList<Task> tasks = result.getTasks();
-                tasks.sort(new Comparator<Task>() {
-                    @Override
-                    public int compare(Task o1, Task o2) {
-                        return o1.getDue().compareTo(o2.getDue());
-                    }
-                });
+                List<Task> tasks = result.getTasks();
+                tasks.sort(Comparator.comparing(Task::getDue));//Сортировка по дате
                 getView().updateTable(tasks);
             }
         });
@@ -74,8 +71,25 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         });
     }
     @Override
+    public void delTask(Task task) {
+        System.out.println();
+        dispatcher.execute(new DelTaskAction(task.getId()), new AsyncCallbackImpl<DelTaskResult>() {
+            @Override
+            public void onSuccess(DelTaskResult deleteTaskResult) {
+                updateTable();
+                onDeleteTaskEvent(task);
+            }
+        });
+    }
+    @Override
+    public void onDeleteTaskEvent(Task task) {
+        DelTaskEvent.fire(this, task);
+
+    }
+    @Override
     protected void onReveal() {
         super.onReveal();
+
     }
 
 }

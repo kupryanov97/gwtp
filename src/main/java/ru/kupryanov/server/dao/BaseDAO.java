@@ -33,7 +33,7 @@ public abstract class BaseDAO<T> {
         return ofy().save().entity(entity).now();
     }
 
-    T saveAndReturn(T entity) {
+    public T saveAndReturn(T entity) {
         return get(saveNow(entity));
     }
 

@@ -28,6 +28,7 @@ import ru.kupryanov.shared.dto.Task;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements HomePresenter.MyView {
     interface Binder extends UiBinder<Widget, HomeView> {
@@ -66,7 +67,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
             public void update(int i, Task task, Boolean aBoolean) {
             }
         });
-        cellTable.addColumn(col1, "Lolkek");
+        cellTable.addColumn(col1, "Выполненность");
 
         final TextColumn<Task> col2 = new TextColumn<Task>() {
             @Override
@@ -74,7 +75,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
                 return task.getTask();
             }
         };
-        cellTable.addColumn(col2, "Task");
+        cellTable.addColumn(col2, "Задача");
 
         final TextColumn<Task> col3 = new TextColumn<Task>() {
             @Override
@@ -83,7 +84,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
                 return task.getDue().getDate() + "." + task.getDue().getMonth() + "." + (task.getDue().getYear() + 1900);
             }
         };
-        cellTable.addColumn(col3, "Due");
+        cellTable.addColumn(col3, "Дата");
 
         final Column<Task, String> col4 = new Column<Task, String>(new ButtonCell(ButtonType.PRIMARY, IconType.GITHUB)) {
             @Override
@@ -91,10 +92,11 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
                 return "Удалить";
             }
         };
+        col4.setCellStyleNames("knopka");
         col4.setFieldUpdater(new FieldUpdater<Task, String>() {
             @Override
-            public void update(int index, Task object, String value) {
-
+            public void update(int index, Task task, String value) {
+                getUiHandlers().delTask(task);
                 Window.alert("Удалено!");
             }
         });
@@ -106,6 +108,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
     @UiHandler("button11")
     public void saveTask(ClickEvent event){
         getUiHandlers().saveTask(this.text.getText(), this.date.getValue());
+        getUiHandlers().updateTable();
     }
 
     @Override
@@ -116,7 +119,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
     }
 
     @Override
-    public void updateTable(ArrayList<Task> tasks) {
+    public void updateTable(List<Task> tasks) {
         this.cellTable.setRowData(tasks);
     }
 }
