@@ -11,8 +11,8 @@
     <g:HTMLPanel>
         <b:Image
                 styleName="imagemain" url="https://ru.inshaker.com/uploads/billboard/promo/55/1570439037-1920%D1%85250.jpg"/>
-        <form class="buttons" action="/#images">
-            <button type="submit">History</button>
+        <form class="buttons" action="/#">
+            <button type="submit">GO HOME</button>
         </form>
         <b:Modal title="Справка" closable="true" fade="true" dataBackdrop="STATIC" dataKeyboard="true" b:id="Modal">
             <b:ModalBody>

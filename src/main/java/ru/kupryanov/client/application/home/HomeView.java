@@ -9,6 +9,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.*;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.TextArea;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.RangeChangeEvent;
@@ -89,14 +90,14 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
         };
         cellTable.addColumn(col3, "Дата");
 
-        final Column<Task, String> col4 = new Column<Task, String>(new ButtonCell(ButtonType.PRIMARY, IconType.GITHUB)) {
+        final Column<Task, String> col4 = new Column<Task, String>(new ButtonCell(ButtonType.PRIMARY)) {
             @Override
             public String getValue(Task object) {
                 return "Удалить";
             }
 
         };
-        final Column<Task, String> col5 = new Column<Task, String>(new ButtonCell(ButtonType.PRIMARY, IconType.GITHUB)) {
+        final Column<Task, String> col5 = new Column<Task, String>(new ButtonCell(ButtonType.PRIMARY)) {
             @Override
             public String getValue(Task object) {
                 return "Редактировать";
@@ -107,11 +108,10 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
             @Override
             public void update(int index, Task task, String value) {
                 myModal.show();
-                    Window.alert("keklol");
                     if(text.getText()!=""){
+                        Window.alert("keklol");
                         getUiHandlers().delTask(task);
                     }
-
             }
         });
         cellTable.addColumn(col5, "");
@@ -121,18 +121,29 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
             @Override
             public void update(int index, Task task, String value) {
                 getUiHandlers().delTask(task);
+                getUiHandlers().updateTable();
                 Window.alert("Удалено!");
+
             }
         });
         cellTable.addColumn(col4, "");
+        this.cellTable.setRowStyles(new RowStyles<Task>() {
+            @Override
+            public String getStyleNames(Task task, int i) {
+                Date date = new Date();
 
-
+                if(task.getDue().before(date))
+                    return "danger";
+                else return "success";
+            }
+        });
     }
 
     @UiHandler("button11")
     public void saveTask(ClickEvent event){
         getUiHandlers().saveTask(this.text.getText(), this.date.getValue());
         text.setValue("");
+        date.setValue(null);
         getUiHandlers().updateTable();
     }
 

@@ -35,6 +35,7 @@ body {
     background: darkolivegreen;
 }
 .date{
+    background: greenyellow;
     margin-left: 10%;
 }
 .watchList {
@@ -59,7 +60,7 @@ body {
 .inputsm{
     width: 80%;
     margin-left: 10%;
-    height: auto;
+    height: 100px;
     resize: none;
 }
 .buttons{

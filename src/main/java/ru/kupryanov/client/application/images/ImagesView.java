@@ -31,22 +31,22 @@ import java.util.Date;
 import java.util.List;
 
 public class ImagesView extends ViewWithUiHandlers<ImagesUiHandlers> implements ImagesPresenter.MyView {
+    interface Binder extends UiBinder<Widget, ImagesView> {
+
+    }
+    @UiField
+    CellTable<Task> cellTable;
+    private ArrayList<Task> tasks = new ArrayList<>();
     @Override
     public void UpdateTable(ArrayList<Task> list) {
         this.cellTable.setRowData(list);
     }
-
     @Override
     public void addTaskInTable(Task task) {
-
+        this.tasks.add(task);
+        UpdateTable(tasks);
     }
 
-    interface Binder extends UiBinder<Widget, ImagesView> {
-    }
-    @UiField
-    CellTable<Task> cellTable;
-    private SimplePager cellTablePager = new SimplePager();
-    private ListDataProvider<Task> cellTableProvider = new ListDataProvider<>();
 
     @Inject
     ImagesView(Binder uiBinder) {
@@ -54,39 +54,24 @@ public class ImagesView extends ViewWithUiHandlers<ImagesUiHandlers> implements 
         initTable();
     }
 
-
     private void initTable(){
-        CheckboxCell checkboxCell = new CheckboxCell();
 
-        final Column<Task, Boolean> col1 = new Column<Task, Boolean>(new CheckboxCell()) {
-            @Override
-            public Boolean getValue(Task task) {
-                return false;
-            }
-        };
-        col1.setFieldUpdater(new FieldUpdater<Task, Boolean>() {
-            @Override
-            public void update(int i, Task task, Boolean aBoolean) {
-            }
-        });
-        cellTable.addColumn(col1, "Выполненность");
-
-        final TextColumn<Task> col2 = new TextColumn<Task>() {
+        final TextColumn<Task> col1 = new TextColumn<Task>() {
             @Override
             public String getValue(Task task) {
-                return task.getTask();
+                return "'"+task.getTask()+"' was done";
             }
         };
-        cellTable.addColumn(col2, "Задача");
+        cellTable.addColumn(col1, "Дерево123");
 
-        final TextColumn<Task> col3 = new TextColumn<Task>() {
+        final TextColumn<Task> col2 = new TextColumn<Task>() {
             @Override
             public String getValue(Task task) {
                 //return new SimpleDateFormat("dd.MM.yyyy").format(task.getDue());
                 return task.getDue().getDate() + "." + task.getDue().getMonth() + "." + (task.getDue().getYear() + 1900);
             }
         };
-        cellTable.addColumn(col3, "Дата");
-        col1.setCellStyleNames("knopka1");
+        cellTable.addColumn(col2, "Собака");
+
     }
 }
