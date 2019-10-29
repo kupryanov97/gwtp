@@ -15,6 +15,7 @@ import com.google.gwt.view.client.RangeChangeEvent;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 import org.gwtbootstrap3.client.ui.Button;
+import org.gwtbootstrap3.client.ui.Modal;
 import org.gwtbootstrap3.client.ui.Pagination;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
 import org.gwtbootstrap3.client.ui.constants.IconType;
@@ -41,6 +42,8 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
     Button button11;
     @UiField
     DateTimePicker date;
+    @UiField
+    Modal myModal;
 
     private SimplePager cellTablePager = new SimplePager();
     private ListDataProvider<Task> cellTableProvider = new ListDataProvider<>();
@@ -91,7 +94,28 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
             public String getValue(Task object) {
                 return "Удалить";
             }
+
         };
+        final Column<Task, String> col5 = new Column<Task, String>(new ButtonCell(ButtonType.PRIMARY, IconType.GITHUB)) {
+            @Override
+            public String getValue(Task object) {
+                return "Редактировать";
+            }
+
+        };
+        col5.setFieldUpdater(new FieldUpdater<Task, String>() {
+            @Override
+            public void update(int index, Task task, String value) {
+                myModal.show();
+                    Window.alert("keklol");
+                    if(text.getText()!=""){
+                        getUiHandlers().delTask(task);
+                    }
+
+            }
+        });
+        cellTable.addColumn(col5, "");
+        col1.setCellStyleNames("knopka1");
         col4.setCellStyleNames("knopka");
         col4.setFieldUpdater(new FieldUpdater<Task, String>() {
             @Override
@@ -108,6 +132,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
     @UiHandler("button11")
     public void saveTask(ClickEvent event){
         getUiHandlers().saveTask(this.text.getText(), this.date.getValue());
+        text.setValue("");
         getUiHandlers().updateTable();
     }
 

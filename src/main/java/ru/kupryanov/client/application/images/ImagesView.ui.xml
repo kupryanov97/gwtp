@@ -5,11 +5,38 @@
              xmlns:b.gwt="urn:import:org.gwtbootstrap3.client.ui.gwt"
              xmlns:b2="urn:import:org.gwtbootstrap3.extras.datetimepicker.client.ui">
 
+
     <ui:with field="res" type="ru.kupryanov.client.resources.AppResources"/>
 
     <g:HTMLPanel>
-        <b.gwt:CellTable  bordered="true" condensed="true" striped="true" hover="true"/>
-        <b:Pagination />
+        <b:Image
+                styleName="imagemain" url="https://ru.inshaker.com/uploads/billboard/promo/55/1570439037-1920%D1%85250.jpg"/>
+        <form class="buttons" action="/#images">
+            <button type="submit">History</button>
+        </form>
+        <b:Modal title="Справка" closable="true" fade="true" dataBackdrop="STATIC" dataKeyboard="true" b:id="Modal">
+            <b:ModalBody>
+                <g:HTML>Здесь должна быть информация о сайте но её пока нет, но вы держитесь, счастья вам, здоровья!!!</g:HTML>
+            </b:ModalBody>
+            <b:ModalFooter>
+                <b:Button type="DANGER" dataDismiss="MODAL">Close</b:Button>
+            </b:ModalFooter>
+        </b:Modal>
+
+        <b:Button styleName="buttons" dataTarget="#Modal" dataToggle="MODAL" size="EXTRA_SMALL">Справка</b:Button>
+        <b:Lead color="red" text="Я устал на:"/>
+        <b:Progress type="STRIPED">
+            <b:ProgressBar type="DANGER" percent="90" text="90%"/>
+        </b:Progress>
+        <b:Panel  styleName="pan">
+            <b:PanelHeader >
+                <b:Heading size="H3" text="Ваш список дел:"/>
+            </b:PanelHeader>
+            <b.gwt:CellTable ui:field="cellTable"  bordered="true" condensed="true" striped="true" hover="true"/>
+            <b:Pagination ui:field="cellTablePagination"/>
+        </b:Panel>
+        <g:SimplePanel ui:field="main"/>
+        <g:DialogBox ui:field="dialogBox"/>
     </g:HTMLPanel>
 
 </ui:UiBinder>

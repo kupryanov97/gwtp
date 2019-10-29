@@ -27,10 +27,16 @@ body {
     width: 100%;
 }
 .knopka{
-    width: 7%;
+    width: 5%;
     background: black;
 }
-
+.knopka1{
+    width: 2%;
+    background: darkolivegreen;
+}
+.date{
+    margin-left: 10%;
+}
 .watchList {
     border: 1px solid silver;
     padding: 2px;
@@ -50,7 +56,17 @@ body {
     background-size: 100%;
     background-image:url("https://ru.inshaker.com/assets/common/body-bg-bf9928ee232a5a485e2d840111ee4bb2b7affb0509ecc283e6c81d4956ca3038.jpg")
 }
-
+.inputsm{
+    width: 80%;
+    margin-left: 10%;
+    height: auto;
+    resize: none;
+}
+.buttons{
+    width: 7%;
+    font-size: 20px;
+    height: auto;
+}
 .pan{
     background: white;
     margin-left: 25%;

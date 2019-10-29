@@ -67,6 +67,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         dispatcher.execute(new AddTaskAction(task), new AsyncCallbackImpl<AddTaskResult>() {
             @Override
             public void onSuccess(AddTaskResult addTaskResult) {
+                updateTable();
             }
         });
     }

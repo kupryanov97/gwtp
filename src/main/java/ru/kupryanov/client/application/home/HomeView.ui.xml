@@ -40,13 +40,13 @@
         </b:Panel>
         <g:SimplePanel ui:field="main"/>
         <g:DialogBox ui:field="dialogBox"/>
-        <b:Modal title="Добавьте что-то" closable="true" fade="true" dataBackdrop="STATIC" dataKeyboard="true" b:id="myModal">
+        <b:Modal title="Добавьте что-то" closable="true" fade="true" dataBackdrop="STATIC" dataKeyboard="true" b:id="myModal" ui:field="myModal">
             <b:ModalBody>
                 <g:TextArea styleName="inputsm" ui:field="text"/>
                 <b2:DateTimePicker styleName="date" minView="DAY" format="mm/dd/yyyy hh:mm" ui:field="date" language="RU"/>
             </b:ModalBody>
             <b:ModalFooter>
-                <b:Button type="PRIMARY" ui:field="button11" dataDismiss="MODAL">Do something</b:Button>
+                <b:Button type="PRIMARY" ui:field="button11" dataDismiss="MODAL">Добавить</b:Button>
                 <b:Button type="DANGER" dataDismiss="MODAL">Close</b:Button>
             </b:ModalFooter>
         </b:Modal>
