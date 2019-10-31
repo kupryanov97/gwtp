@@ -10,6 +10,8 @@ import ru.kupryanov.shared.dispatch.AddTaskAction;
 import ru.kupryanov.shared.dispatch.GetTaskAction;
 import ru.kupryanov.shared.dispatch.GetTasksAction;
 import ru.kupryanov.shared.dispatch.DelTaskAction;
+import ru.kupryanov.server.dispatch.common.*;
+import ru.kupryanov.shared.action.*;
 
 
 public class MyHandlerModule extends HandlerModule {
@@ -19,5 +21,7 @@ public class MyHandlerModule extends HandlerModule {
         bindHandler(GetTaskAction.class, GetTaskHandller.class);
         bindHandler(AddTaskAction.class, AddTaskHandller.class);
         bindHandler(DelTaskAction.class, DelTaskHandller.class);
+        bindHandler(GetTokenUpWorkAction.class, GetTokenUpWorkHandler.class);
+
     }
 }

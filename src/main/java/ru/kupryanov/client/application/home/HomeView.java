@@ -45,6 +45,8 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
     DateTimePicker date;
     @UiField
     Modal myModal;
+    @UiField
+    Button GoogleButton;
 
     private SimplePager cellTablePager = new SimplePager();
     private ListDataProvider<Task> cellTableProvider = new ListDataProvider<>();
@@ -55,7 +57,10 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
         this.text.setTitle("keklol");
         initTable();
     }
-
+    @UiHandler("GoogleButton")
+    public void GoogleButton(ClickEvent eventfirst) {
+        getUiHandlers().GoogleButton();
+    }
 
     private void initTable(){
         CheckboxCell checkboxCell = new CheckboxCell();
@@ -141,10 +146,19 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
 
     @UiHandler("button11")
     public void saveTask(ClickEvent event){
+        if(text.getText().isEmpty()){
+            Window.alert("Текстовое поле или дата не могут быть пустыми!");
+
+        }
+        if(date.getValue()==null) {
+            Window.alert("Текстовое поле или дата не могут быть пустыми!");
+            return;
+        }
         getUiHandlers().saveTask(this.text.getText(), this.date.getValue());
-        text.setValue("");
-        date.setValue(null);
+        //text.setValue("");
+        //date.setValue(null);
         getUiHandlers().updateTable();
+        button11.setActive(false);
     }
 
     @Override
@@ -157,5 +171,13 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
     @Override
     public void updateTable(List<Task> tasks) {
         this.cellTable.setRowData(tasks);
+    }
+
+    @Override
+    public void isLogin(boolean a) {
+        if(a){
+            GoogleButton.setVisible(false);
+            getUiHandlers().regButton();
+        }
     }
 }

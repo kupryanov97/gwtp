@@ -7,13 +7,28 @@
 
 
     <ui:with field="res" type="ru.kupryanov.client.resources.AppResources"/>
-
     <g:HTMLPanel>
         <b:Image
                 styleName="imagemain" url="https://ru.inshaker.com/uploads/billboard/promo/55/1570439037-1920%D1%85250.jpg"/>
+        <b:Navbar>
+            <b:NavbarCollapse>
+            <b:NavbarNav>
+                <b:AnchorListItem ui:field="anchorListItemHome" href="#/">Home</b:AnchorListItem>
+                <b:AnchorListItem ui:field="anchorListItemHistory" href="/#images">History</b:AnchorListItem>
+            </b:NavbarNav>
+        </b:NavbarCollapse>
+        </b:Navbar>
+        <div id="Win">
+            <div id="form">
+                <form class="form-signin">
+                    <b:Button ui:field="GoogleButton"  text="in Google" addStyleNames="btn-primary"></b:Button>
+                </form>
+            </div>
+        </div>
         <form class="buttons" action="/#images">
             <button type="submit">History</button>
         </form>
+            <b:Button dataTarget="#myModal" dataToggle="MODAL" type="PRIMARY" size="LARGE">Тык сюда</b:Button>
         <b:Modal title="Справка" closable="true" fade="true" dataBackdrop="STATIC" dataKeyboard="true" b:id="Modal">
             <b:ModalBody>
                 <g:HTML>Здесь должна быть информация о сайте но её пока нет, но вы держитесь, счастья вам, здоровья!!!</g:HTML>
@@ -32,11 +47,8 @@
             <b:PanelHeader >
                 <b:Heading size="H3" text="Ваш список дел:"/>
             </b:PanelHeader>
-            <b.gwt:CellTable ui:field="cellTable"  bordered="true" condensed="true" striped="true" hover="true"/>
+            <b.gwt:CellTable styleName="table" ui:field="cellTable"  bordered="true" condensed="true" striped="true" hover="true"/>
             <b:Pagination ui:field="cellTablePagination"/>
-            <b:PanelFooter>
-                <b:Button dataTarget="#myModal" dataToggle="MODAL" type="PRIMARY" size="LARGE">Тык сюда</b:Button>
-            </b:PanelFooter>
         </b:Panel>
         <g:SimplePanel ui:field="main"/>
         <g:DialogBox ui:field="dialogBox"/>

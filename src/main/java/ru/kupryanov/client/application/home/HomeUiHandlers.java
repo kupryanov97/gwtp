@@ -11,5 +11,7 @@ interface HomeUiHandlers extends UiHandlers {
     void addTaskInTable(long id);
     void delTask(Task task);
     void onDeleteTaskEvent(Task task);
+    void regButton();
+    void GoogleButton();
 
 }

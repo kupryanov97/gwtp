@@ -8,12 +8,10 @@ import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.annotations.ProxyEvent;
-import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import ru.kupryanov.client.application.ApplicationPresenter;
 import ru.kupryanov.client.event.DelTaskEvent;
-import ru.kupryanov.client.event.ReturnTaskEvent;
 import ru.kupryanov.client.place.NameTokens;
 import ru.kupryanov.shared.dto.Task;
 
@@ -44,10 +42,6 @@ public class ImagesPresenter extends Presenter<ImagesPresenter.MyView, ImagesPre
         getView().addTaskInTable(event.getTask());
     }
 
-    @Override
-    public void returnTask(Task task) {
-        ReturnTaskEvent.fire(this, task);
-    }
 
     @Override
     protected void onReset() {

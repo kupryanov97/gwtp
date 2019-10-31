@@ -40,6 +40,7 @@ public class ImagesView extends ViewWithUiHandlers<ImagesUiHandlers> implements 
     @Override
     public void UpdateTable(ArrayList<Task> list) {
         this.cellTable.setRowData(list);
+        Window.alert(""+tasks.size());
     }
     @Override
     public void addTaskInTable(Task task) {
