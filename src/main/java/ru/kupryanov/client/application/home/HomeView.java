@@ -42,6 +42,8 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
     @UiField
     Button button11;
     @UiField
+    Button close;
+    @UiField
     DateTimePicker date;
     @UiField
     Modal myModal;
@@ -90,7 +92,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
             @Override
             public String getValue(Task task) {
                 //return new SimpleDateFormat("dd.MM.yyyy").format(task.getDue());
-                return task.getDue().getDate() + "." + task.getDue().getMonth() + "." + (task.getDue().getYear() + 1900);
+                return task.getDue().getDate() + "." + task.getDue().getMonth() + "." + (task.getDue().getYear() + 1900+"  "+task.getDue().getHours()+":"+task.getDue().getMinutes()+"0");
             }
         };
         cellTable.addColumn(col3, "Дата");
@@ -147,20 +149,28 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers> implements Home
     @UiHandler("button11")
     public void saveTask(ClickEvent event){
         if(text.getText().isEmpty()){
-            Window.alert("Текстовое поле или дата не могут быть пустыми!");
-
+            text.setStyleName("inputsmerr");
         }
-        if(date.getValue()==null) {
-            Window.alert("Текстовое поле или дата не могут быть пустыми!");
-            return;
+        if(date.getValue()==null){
+            date.setStyleName("dateerr");
         }
-        getUiHandlers().saveTask(this.text.getText(), this.date.getValue());
-        //text.setValue("");
-        //date.setValue(null);
-        getUiHandlers().updateTable();
-        button11.setActive(false);
+        if((!text.getText().isEmpty())&&(date.getValue()!=null)){
+            text.setStyleName("inputsm");
+            date.setStyleName("date");
+            myModal.hide();
+            getUiHandlers().saveTask(this.text.getText(), this.date.getValue());
+            getUiHandlers().updateTable();
+        }
+        else {
+            Window.alert("Текстовое поле или дата не могут быть пустыми!");
+            myModal.show();}
     }
-
+    @UiHandler("close")
+    public void close(ClickEvent event){
+        myModal.hide();
+        text.setValue("");
+        date.setValue(null);
+    }
     @Override
     public void addTaskInTable(Task task) {
         ArrayList<Task> tasks = new ArrayList<Task>();

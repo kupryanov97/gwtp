@@ -14,6 +14,9 @@ body {
     padding-left: 0px;
     list-style: none;
 }
+.navbar{
+    background: gold;
+}
 .ul.nav a {
     display: block;
     width: 7em;
@@ -54,7 +57,11 @@ body {
     background: darkolivegreen;
 }
 .date{
-    background: greenyellow;
+    background: white;
+    margin-left: 10%;
+}
+.dateerr{
+    border: 1px solid #c00009;
     margin-left: 10%;
 }
 .watchList {
@@ -75,6 +82,13 @@ body {
     padding-top: 70px;
     background-size: 100%;
     background-image:url("https://ru.inshaker.com/assets/common/body-bg-bf9928ee232a5a485e2d840111ee4bb2b7affb0509ecc283e6c81d4956ca3038.jpg")
+}
+.inputsmerr{
+    border: 1px solid #c00009;
+    width: 80%;
+    margin-left: 10%;
+    height: 100px;
+    resize: none;
 }
 .inputsm{
     width: 80%;

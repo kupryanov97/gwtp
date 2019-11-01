@@ -13,8 +13,8 @@
         <b:Navbar>
             <b:NavbarCollapse>
             <b:NavbarNav>
-                <b:AnchorListItem ui:field="anchorListItemHome" href="#/">Home</b:AnchorListItem>
-                <b:AnchorListItem ui:field="anchorListItemHistory" href="/#images">History</b:AnchorListItem>
+                <b:AnchorListItem styleName="menu"  ui:field="anchorListItemHome" href="#/">Home</b:AnchorListItem>
+                <b:AnchorListItem styleName="menu"  ui:field="anchorListItemHistory" href="/#images">History</b:AnchorListItem>
             </b:NavbarNav>
         </b:NavbarCollapse>
         </b:Navbar>
@@ -25,9 +25,6 @@
                 </form>
             </div>
         </div>
-        <form class="buttons" action="/#images">
-            <button type="submit">History</button>
-        </form>
             <b:Button dataTarget="#myModal" dataToggle="MODAL" type="PRIMARY" size="LARGE">Тык сюда</b:Button>
         <b:Modal title="Справка" closable="true" fade="true" dataBackdrop="STATIC" dataKeyboard="true" b:id="Modal">
             <b:ModalBody>
@@ -54,12 +51,17 @@
         <g:DialogBox ui:field="dialogBox"/>
         <b:Modal title="Добавьте что-то" closable="true" fade="true" dataBackdrop="STATIC" dataKeyboard="true" b:id="myModal" ui:field="myModal">
             <b:ModalBody>
-                <g:TextArea styleName="inputsm" ui:field="text"/>
+                <b:FormGroup validationState="WARNING">
+                    <b:FormLabel>Введите задачу:</b:FormLabel>
+                    <g:TextArea styleName="inputsm" ui:field="text"/>
+                    <b:HelpBlock text=""/>
+                </b:FormGroup>
+                <b:FormLabel>Укажите срок:</b:FormLabel>
                 <b2:DateTimePicker styleName="date" minView="DAY" format="mm/dd/yyyy hh:mm" ui:field="date" language="RU"/>
             </b:ModalBody>
             <b:ModalFooter>
-                <b:Button type="PRIMARY" ui:field="button11" dataDismiss="MODAL">Добавить</b:Button>
-                <b:Button type="DANGER" dataDismiss="MODAL">Close</b:Button>
+                <b:Button type="PRIMARY" ui:field="button11" >Добавить</b:Button>
+                <b:Button type="DANGER" ui:field="close" dataDismiss="MODAL">Close</b:Button>
             </b:ModalFooter>
         </b:Modal>
     </g:HTMLPanel>
